@@ -62,4 +62,67 @@ class DataManager: NSObject {
         //设置数据库打开标志
         isOpen = true
     }
+    //添加新记事的方法
+    class func addNote(note:NoteModel){
+        if !isOpen {
+            self.openDataBase()
+        }
+        //创建记事表
+        self.createNoteTable()
+        //将记事模型转换成字典并保存
+        sqlHandle!.insertData(note.toDictionary(), intoTable: "noteTable")
+        
+    }
+    //根据分组获取记事的方法
+    class func getNote(group:String) -> [NoteModel]{
+        if !isOpen {
+            self.openDataBase()
+        }
+        //创建查询请求
+        let request = SQLiteSearchRequest()
+        //设置查询条件
+        request.contidion = "ownGroup=\"\(group)\""
+        var array = Array<NoteModel>()
+        sqlHandle?.searchData(withReeuest: request, inTable: "noteTable", searchFinish: {
+            (success, dataArray) in
+            dataArray?.forEach({ (element) in
+                let note = NoteModel()
+                //对记事模型进行赋值
+                note.time = element["time"] as! String?
+                note.title = element["title"] as! String?
+                note.body = element["body"] as! String?
+                note.group = element["ownGroup"] as! String?
+                note.noteId = element["noteId"] as! Int?
+                array.append(note)
+            })
+        })
+        
+        return array
+    }
+    //创建NoteTable方法
+    class func createNoteTable() {
+        let key1 = SQLiteKeyObject()
+        key1.name = "noteId"
+        key1.fieldType = INTEGER
+        //将noteId作为主键
+        key1.modificationType = PRIMARY_KEY
+        
+        let key2 = SQLiteKeyObject()
+        key2.name = "ownGroup"
+        key2.fieldType = TEXT
+        
+        let key3 = SQLiteKeyObject()
+        key3.name = "body"
+        key3.fieldType = TEXT
+        key3.tSize = 400
+        
+        let key4 = SQLiteKeyObject()
+        key4.name = "title"
+        key4.fieldType = TEXT
+        
+        let key5 = SQLiteKeyObject()
+        key5.name = "time"
+        key5.fieldType = TEXT
+        sqlHandle!.createTable(withName: "noteTable", keys: [key1,key2,key3,key4,key5])
+    }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, HomeButtonDelegate {
     var homeView:HomeView?
     var dataArray:Array<String>?
     override func viewDidLoad() {
@@ -82,6 +82,14 @@ class ViewController: UIViewController {
         alertController.addAction(alertItemAdd)
         //展示警告框
         self.present(alertController, animated: true, completion: nil)
+    }
+    /**
+     实现协议方法
+     */
+    func homeButtonClick(title:String) {
+        let controller =  NoteListTableViewController()
+        controller.name = title
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
 }

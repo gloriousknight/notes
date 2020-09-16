@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE2F45B02511F565003B7F96 /* NoteInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2F45AF2511F565003B7F96 /* NoteInfoViewController.swift */; };
 		DE5A2006250F431E00DFAEBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A2005250F431E00DFAEBD /* AppDelegate.swift */; };
 		DE5A2008250F431E00DFAEBD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A2007250F431E00DFAEBD /* SceneDelegate.swift */; };
 		DE5A200A250F431E00DFAEBD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A2009250F431E00DFAEBD /* ViewController.swift */; };
@@ -15,6 +16,8 @@
 		DE5A2012250F431F00DFAEBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE5A2010250F431F00DFAEBD /* LaunchScreen.storyboard */; };
 		DE5A201A250F457300DFAEBD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A2019250F457300DFAEBD /* HomeView.swift */; };
 		DE5A201C2510A9FA00DFAEBD /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A201B2510A9FA00DFAEBD /* DataManager.swift */; };
+		DE5A201E2511B86900DFAEBD /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A201D2511B86900DFAEBD /* NoteModel.swift */; };
+		DE5A20202511BA8400DFAEBD /* NoteListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A201F2511BA8400DFAEBD /* NoteListTableViewController.swift */; };
 		F623B8D4FE9B439D5F7D5BC1 /* Pods_Notes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D5D09005144F12F10949A0 /* Pods_Notes.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +25,7 @@
 		40997F61F2B7439277FE49B1 /* Pods-Notes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notes.debug.xcconfig"; path = "Target Support Files/Pods-Notes/Pods-Notes.debug.xcconfig"; sourceTree = "<group>"; };
 		82D5D09005144F12F10949A0 /* Pods_Notes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A838169FD23C9A0F8EB6C39E /* Pods-Notes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notes.release.xcconfig"; path = "Target Support Files/Pods-Notes/Pods-Notes.release.xcconfig"; sourceTree = "<group>"; };
+		DE2F45AF2511F565003B7F96 /* NoteInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteInfoViewController.swift; sourceTree = "<group>"; };
 		DE5A2002250F431E00DFAEBD /* Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE5A2005250F431E00DFAEBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE5A2007250F431E00DFAEBD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +36,8 @@
 		DE5A2013250F431F00DFAEBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE5A2019250F457300DFAEBD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DE5A201B2510A9FA00DFAEBD /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		DE5A201D2511B86900DFAEBD /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		DE5A201F2511BA8400DFAEBD /* NoteListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +84,11 @@
 				DE5A2005250F431E00DFAEBD /* AppDelegate.swift */,
 				DE5A2007250F431E00DFAEBD /* SceneDelegate.swift */,
 				DE5A2009250F431E00DFAEBD /* ViewController.swift */,
+				DE5A201D2511B86900DFAEBD /* NoteModel.swift */,
+				DE5A201F2511BA8400DFAEBD /* NoteListTableViewController.swift */,
 				DE5A200B250F431E00DFAEBD /* Main.storyboard */,
 				DE5A201B2510A9FA00DFAEBD /* DataManager.swift */,
+				DE2F45AF2511F565003B7F96 /* NoteInfoViewController.swift */,
 				DE5A2019250F457300DFAEBD /* HomeView.swift */,
 				DE5A200E250F431F00DFAEBD /* Assets.xcassets */,
 				DE5A2010250F431F00DFAEBD /* LaunchScreen.storyboard */,
@@ -212,8 +221,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE2F45B02511F565003B7F96 /* NoteInfoViewController.swift in Sources */,
 				DE5A200A250F431E00DFAEBD /* ViewController.swift in Sources */,
+				DE5A201E2511B86900DFAEBD /* NoteModel.swift in Sources */,
 				DE5A201C2510A9FA00DFAEBD /* DataManager.swift in Sources */,
+				DE5A20202511BA8400DFAEBD /* NoteListTableViewController.swift in Sources */,
 				DE5A201A250F457300DFAEBD /* HomeView.swift in Sources */,
 				DE5A2006250F431E00DFAEBD /* AppDelegate.swift in Sources */,
 				DE5A2008250F431E00DFAEBD /* SceneDelegate.swift in Sources */,
