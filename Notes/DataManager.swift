@@ -125,4 +125,29 @@ class DataManager: NSObject {
         key5.fieldType = TEXT
         sqlHandle!.createTable(withName: "noteTable", keys: [key1,key2,key3,key4,key5])
     }
+    //更新一条记事内容
+    class func updateNote(note:NoteModel){
+        if !isOpen {
+            self.openDataBase()
+        }
+        //根据主键ID来进行更新
+        sqlHandle?.updateData(note.toDictionary(), intoTable: "noteTable", while: "noteId = \(note.noteId!)", isSecurity: true)
+    }
+    //删除一条记事
+    class func deleteNote(note:NoteModel) {
+        if !isOpen {
+            self.openDataBase()
+        }
+        sqlHandle?.deleteData("noteId=\(note.noteId!)", intoTable: "noteTable", isSecurity: true)
+    }
+    //删除一个分组，将其下面的所有记事项目都删除
+    class func deleteGroup(name:String) {
+        if !isOpen {
+            self.openDataBase()
+        }
+        //首先删除分组下的所有记事
+        sqlHandle?.deleteData("ownGroup=\"\(name)\"", intoTable: "noteTable", isSecurity: true)
+        //删除分组
+        sqlHandle?.deleteData("GroupName=\"\(name)\"", intoTable: "groupTable", isSecurity: true)
+    }
 }

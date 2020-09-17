@@ -8,9 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController, HomeButtonDelegate {
+class ViewController: UIViewController,HomeButtonDelegate {
+    func homeButtonClick(title: String) {
+        let controller =  NoteListTableViewController()
+        controller.name = title
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
     var homeView:HomeView?
     var dataArray:Array<String>?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //页面标题
@@ -19,8 +27,14 @@ class ViewController: UIViewController, HomeButtonDelegate {
         self.edgesForExtendedLayout = UIRectEdge()
 //        dataArray = ["生活","学习","工作","待办","健身计划"]
         //从DataManager中获取分组数据
-        dataArray = DataManager.getGroupData()
+//        dataArray = DataManager.getGroupData()
         self.installUI()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        dataArray = DataManager.getGroupData()
+        self.homeView?.dataArray = dataArray
+        self.homeView?.updateLayout()
     }
     /**
         初始化UI方法
@@ -36,6 +50,13 @@ class ViewController: UIViewController, HomeButtonDelegate {
         //进行导航功能按钮创建
         installNavigationItem()
     }
+//    /**
+//     实现协议方法
+//     */
+//    func homeButtonClick(title:String) {
+//        print("执行了")
+//
+//    }
     /**
         初始化导航栏方法
      */
@@ -82,14 +103,6 @@ class ViewController: UIViewController, HomeButtonDelegate {
         alertController.addAction(alertItemAdd)
         //展示警告框
         self.present(alertController, animated: true, completion: nil)
-    }
-    /**
-     实现协议方法
-     */
-    func homeButtonClick(title:String) {
-        let controller =  NoteListTableViewController()
-        controller.name = title
-        self.navigationController?.pushViewController(controller, animated: true)
     }
     
 }

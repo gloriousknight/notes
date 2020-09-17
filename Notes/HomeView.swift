@@ -8,11 +8,11 @@
 
 import UIKit
 
-//定义协议
 protocol HomeButtonDelegate {
     func homeButtonClick(title:String)
 }
 class HomeView: UIScrollView {
+    var viewcontroller:ViewController?
     //定义属性
     var homeButtonDelegate:HomeButtonDelegate?
     //定义行间距
@@ -59,13 +59,10 @@ class HomeView: UIScrollView {
         }
     }
     //按钮触发方法
-    @objc func btnClick(btn:UIButton) {
-        if homeButtonDelegate != nil {
-            print("success")
-            homeButtonDelegate?.homeButtonClick(title: dataArray![btn.tag])
-            
-        }
+    @objc func btnClick(btn:UIButton)  {
+        homeButtonDelegate?.homeButtonClick(title: dataArray![btn.tag])
+        print("success")
     }
 
-
 }
+

@@ -47,7 +47,7 @@ class NoteInfoViewController: UIViewController {
      定义添加记事方法
      */
     @objc func addNote() {
-        //如果是新记事，进行数据库的新增
+        //判断是否为新建记事
         if isNew {
             if titleTextField?.text != nil  && titleTextField!.text!.count > 0 {
                 noteModel = NoteModel()
@@ -61,6 +61,17 @@ class NoteInfoViewController: UIViewController {
                 DataManager.addNote(note: noteModel!)
                 self.navigationController!.popViewController(animated: true)
             }
+            //进行更新记事逻辑编写
+        }else{
+            if titleTextField?.text != nil && titleTextField!.text!.count > 0{
+                noteModel?.title = titleTextField?.text!
+                noteModel?.body = bodyTextView?.text
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                noteModel?.time = dateFormatter.string(from: Date())
+                DataManager.updateNote(note: noteModel!)
+                self.navigationController?.popViewController(animated: true)
+            }
         }
         
     }
@@ -68,6 +79,19 @@ class NoteInfoViewController: UIViewController {
      定义删除记事方法
      */
     @objc func deleteNote() {
+        let alertController = UIAlertController(title: "警告", message: "是否确定删除这条记事？", preferredStyle: .alert)
+        let action = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let action2 = UIAlertAction(title: "删除", style: .destructive, handler: {(UIAlertAction) -> Void in
+            //如果不是新建记事，就进行删除操作
+            if !self.isNew {
+                DataManager.deleteNote(note: self.noteModel!)
+                self.navigationController?.popViewController(animated: true)
+            
+            }
+        })
+        alertController.addAction(action)
+        alertController.addAction(action2)
+        self.present(alertController, animated: true, completion: nil)
         
     }
     /**
@@ -112,7 +136,39 @@ class NoteInfoViewController: UIViewController {
      定义界面加载方法
      */
     func installUI() {
-        
+        titleTextField = UITextField()
+        self.view.addSubview(titleTextField!)
+        titleTextField?.borderStyle = .none
+        titleTextField?.placeholder = "请输入标题"
+        titleTextField?.snp.makeConstraints({ (maker) in
+            maker.top.equalTo(30)
+            maker.left.equalTo(30)
+            maker.right.equalTo(30)
+            maker.height.equalTo(30)
+        })
+        let line = UIView()
+        self.view.addSubview(line)
+        line.backgroundColor = UIColor.gray
+        line.snp.makeConstraints( {(maker) in
+            maker.left.equalTo(15)
+            maker.top.equalTo(titleTextField!.snp.bottom).offset(5)
+            maker.right.equalTo(-15)
+            maker.height.equalTo(0.5)
+        })
+        bodyTextView = UITextView()
+        bodyTextView?.layer.borderColor = UIColor.gray.cgColor
+        bodyTextView?.layer.borderWidth = 0.5
+        self.view.addSubview(bodyTextView!)
+        bodyTextView?.snp.makeConstraints({ (maker) in
+            maker.left.equalTo(30)
+            maker.top.equalTo(line.snp.bottom).offset(10)
+            maker.right.equalTo(-30)
+            maker.height.equalTo(0.5)
+        })
+        if !isNew {
+            titleTextField?.text = noteModel?.title
+            bodyTextView?.text = noteModel?.body
+        }
     }
 
 }
